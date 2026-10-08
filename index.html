@@ -751,7 +751,7 @@ const UI = {
     after:'After {x}', level:'Level', time:'Time', language:'Language', youLearn:'You will learn',
     whyH:'Why this course is for you', parts:'See the course parts ({n})', startCourse:'Start course', saveLater:'Save for later',
     langNote:'Not yet in your language. A trainer can help you.', hoursWeeks:'{h} hours, about {w} week{s} at your pace',
-    mSaved:'Saved to your plan', mAdded:'Course added', ok:'OK', close:'Close', hrsShort:'({h} hours)', preview:'Preview course', newTab:'opens in a new tab', liveTag:'Live now', liveH:'Start learning today', liveP:'{c} is open. Use an AI app for everyday tasks and check every answer. Works on your phone.', openLive:'Open Module 1', copyLink:'Copy link', copied:'Link copied. Paste it in your browser.', copyFail:'Select the link above and copy it.',
+    mSaved:'Saved to your plan', mAdded:'Course added', ok:'OK', close:'Close', hrsShort:'({h} hours)', preview:'Preview course', newTab:'opens in a new tab', liveTag:'Live now', liveH:'Start learning today', liveP:'{c} is open. Use an AI app for everyday tasks and check every answer. Works on your phone.', openLive:'Open Module 1', copyLink:'Copy link', copied:'Link copied. Paste it in your browser.', copyFail:'Could not copy. Use the open button instead.',
     mSavedB:'{c} is saved. It opens once you finish the course before it.', mAddedB:'{c} is added to your courses. In the full platform, this opens your first lesson.',
     sTrade:'Trade', sStudied:'Studied', sGoals:'Your goals', sLangs:'Languages', sPhone:'Phone', sComp:'Computer', sAI:'AI apps', sEng:'English at work',
     speaks:'Speaks {a}. Wants to learn in {b}.', none12:' (did not study Class 12)', ownLang:'your own language', andWord:' and ',
@@ -788,7 +788,7 @@ const UI = {
     after:'{x} के बाद', level:'स्तर', time:'समय', language:'भाषा', youLearn:'आप सीखेंगे',
     whyH:'यह कोर्स आपके लिए क्यों', parts:'कोर्स के हिस्से देखें ({n})', startCourse:'कोर्स शुरू करें', saveLater:'बाद के लिए सेव करें',
     langNote:'अभी आपकी भाषा में नहीं है। ट्रेनर आपकी मदद कर सकते हैं।', hoursWeeks:'{h} घंटे, आपकी रफ़्तार से लगभग {w} हफ़्ते',
-    mSaved:'आपके प्लान में सेव हो गया', mAdded:'कोर्स जुड़ गया', ok:'ठीक है', close:'बंद करें', hrsShort:'({h} घंटे)', preview:'कोर्स देखें', newTab:'नए टैब में खुलेगा', liveTag:'अभी उपलब्ध', liveH:'आज ही सीखना शुरू करें', liveP:'{c} खुला है। रोज़ के कामों में AI ऐप इस्तेमाल करें और हर जवाब जाँचें। आपके फ़ोन पर चलता है।', openLive:'मॉड्यूल 1 खोलें', copyLink:'लिंक कॉपी करें', copied:'लिंक कॉपी हो गया। इसे अपने ब्राउज़र में पेस्ट करें।', copyFail:'ऊपर दिया लिंक चुनकर कॉपी करें।',
+    mSaved:'आपके प्लान में सेव हो गया', mAdded:'कोर्स जुड़ गया', ok:'ठीक है', close:'बंद करें', hrsShort:'({h} घंटे)', preview:'कोर्स देखें', newTab:'नए टैब में खुलेगा', liveTag:'अभी उपलब्ध', liveH:'आज ही सीखना शुरू करें', liveP:'{c} खुला है। रोज़ के कामों में AI ऐप इस्तेमाल करें और हर जवाब जाँचें। आपके फ़ोन पर चलता है।', openLive:'मॉड्यूल 1 खोलें', copyLink:'लिंक कॉपी करें', copied:'लिंक कॉपी हो गया। इसे अपने ब्राउज़र में पेस्ट करें।', copyFail:'कॉपी नहीं हुआ। खोलने वाला बटन दबाएँ।',
     mSavedB:'{c} सेव हो गया है। इससे पहले वाला कोर्स पूरा होने पर यह खुलेगा।', mAddedB:'{c} आपके कोर्स में जुड़ गया है। पूरे प्लेटफ़ॉर्म में यहाँ से आपका पहला पाठ खुलेगा।',
     sTrade:'ट्रेड', sStudied:'पढ़ाई', sGoals:'आपके लक्ष्य', sLangs:'भाषाएँ', sPhone:'फ़ोन', sComp:'कंप्यूटर', sAI:'AI ऐप्स', sEng:'काम पर अंग्रेज़ी',
     speaks:'बोलते हैं: {a}। सीखना चाहते हैं: {b}।', none12:' (कक्षा 12 नहीं पढ़ी)', ownLang:'अपनी भाषा में', andWord:' और ',
@@ -1731,15 +1731,13 @@ function liveHTML(){
         <a class="btn primary" id="liveOpen" href="${esc(L.url)}" target="_blank" rel="noopener" aria-label="${esc(t('openLive'))} (${esc(t('newTab'))})">${esc(t('openLive'))} ${IC.ext}</a>
         <button class="btn ghost" id="liveCopy" type="button">${esc(t('copyLink'))}</button>
       </div>
-      <p class="live-url"><a href="${esc(L.url)}" target="_blank" rel="noopener" id="liveUrl">${esc(L.url)}</a></p>
       <p class="live-msg" id="liveMsg" role="status" aria-live="polite"></p>
     </div>
   </section>`;
 }
 function copyLive(){
   const url = LIVE_COURSE.url, msg = $('#liveMsg');
-  const ok = ()=>{ msg.textContent = t('copied'); }, fail = ()=>{ msg.textContent = t('copyFail');
-    const r=document.createRange(); r.selectNodeContents($('#liveUrl')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); };
+  const ok = ()=>{ msg.textContent = t('copied'); }, fail = ()=>{ msg.textContent = t('copyFail'); };
   const legacy = ()=>{ try{ const ta=document.createElement('textarea'); ta.value=url; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
       document.body.appendChild(ta); ta.select(); const done=document.execCommand('copy'); ta.remove(); done?ok():fail(); }catch(e){ fail(); } };
   try{ if(navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(ok, legacy); else legacy(); }catch(e){ legacy(); }
