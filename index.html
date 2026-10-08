@@ -166,7 +166,6 @@ const UI={
   tSaved:{en:"Saved. You will find it in your plan.",hi:"सहेज लिया। यह आपके प्लान में मिलेगा।"},
   tAdded:{en:"Added to your plan.",hi:"आपके प्लान में जोड़ दिया।"},
   tOpening:{en:"Opening the course…",hi:"कोर्स खुल रहा है…"},
-  tSoon:{en:"This course opens soon. Ask your trainer for the start date.",hi:"यह कोर्स जल्द खुलेगा। शुरू होने की तारीख अपने ट्रेनर से पूछें।"},
   change:{en:"Change my answers",hi:"मेरे जवाब बदलें"},again:{en:"Start again",hi:"फिर से शुरू करें"},
   kTrade:{en:"Trade",hi:"ट्रेड"},kGoals:{en:"Goals",hi:"लक्ष्य"},kStudies:{en:"Studies",hi:"पढ़ाई"},kPhone:{en:"Phone",hi:"फ़ोन"},
   kComp:{en:"Computer",hi:"कंप्यूटर"},kAI:{en:"AI apps",hi:"AI ऐप्स"},kEng:{en:"English at work",hi:"काम पर अंग्रेज़ी"},
@@ -182,14 +181,15 @@ const UI={
 const t=(k,v)=>fill(tr(UI[k]),v||{});
 
 /* ---------- courses ---------- */
-// url: live course link (opens in a new tab). Courses without a url show a "opens soon" note.
+// Every "Start this course" button opens the live course in a new tab.
+const LIVE_URL="https://aai-tau.vercel.app/#S01";
 const COURSES = {
   AIFS:{name:"AI First Steps on Your Phone",cat:{en:"AI Foundations",hi:"AI की बुनियाद"},h:8,rung:1,teaches:["web_search","ai_aware","file_sharing","phone_typing"],
     needs:[],promise:{en:"It starts from zero and uses only your phone.",hi:"यह बिल्कुल शुरू से है और सिर्फ़ आपके फ़ोन से चलता है।"}},
   EAB:{name:"Everyday AI Basics",cat:{en:"AI Foundations",hi:"AI की बुनियाद"},h:10,rung:2,teaches:["ai_first_use","online_forms","email_use"],
     needs:["phone_typing"],needsAny:["web_search","file_sharing"],promise:{en:"You will use an AI app for small daily tasks, step by step.",hi:"आप रोज़ के छोटे कामों के लिए AI ऐप का इस्तेमाल कदम-दर-कदम सीखेंगे।"}},
   AA1:{name:"Applied AI 1: Use It, and Check It",cat:{en:"Applied AI",hi:"काम में AI"},h:16,rung:3,teaches:["ai_first_use","ai_prompting","ai_verification"],
-    needs:["phone_typing","web_search"],url:"https://aai-tau.vercel.app/#S01",promise:{en:"You will use an AI app on real tasks and check every answer.",hi:"आप असली कामों में AI ऐप का इस्तेमाल करेंगे और हर जवाब जाँचेंगे।"}},
+    needs:["phone_typing","web_search"],promise:{en:"You will use an AI app on real tasks and check every answer.",hi:"आप असली कामों में AI ऐप का इस्तेमाल करेंगे और हर जवाब जाँचेंगे।"}},
   AA2:{name:"Applied AI 2: Apply It Where It Matters",cat:{en:"Applied AI",hi:"काम में AI"},h:16,rung:3,teaches:["ai_task_use"],
     needs:["ai_prompting","ai_verification"],promise:{en:"You will use AI for real work and study tasks.",hi:"आप काम और पढ़ाई के असली कामों में AI का इस्तेमाल करेंगे।"}},
   AA3:{name:"Applied AI 3: Trust, Safety and Harm",cat:{en:"Applied AI",hi:"काम में AI"},h:16,rung:4,teaches:["ai_safety"],
@@ -476,10 +476,9 @@ function results(){
      <p><b>Safety flags:</b> ${r.risks.scam?"would pay or call on a fake job message. ":""}${r.risks.unchecked?"uses AI often without checking. ":""}${!r.risks.scam&&!r.risks.unchecked?"none":""}</p>
      <p><b>Answers:</b> <code>${esc(JSON.stringify(answers))}</code></p></details>
   </section>`;
-  app.querySelectorAll(".cta").forEach(b=>b.onclick=()=>{const toast=b.nextElementSibling, act=b.dataset.act, c=COURSES[b.dataset.c];
+  app.querySelectorAll(".cta").forEach(b=>b.onclick=()=>{const toast=b.nextElementSibling, act=b.dataset.act;
     if(act==="start"){
-      if(c.url){toast.textContent=t("tOpening");window.open(c.url,"_blank","noopener");}
-      else toast.textContent=t("tSoon");
+      toast.textContent=t("tOpening");window.open(LIVE_URL,"_blank","noopener");
     }else toast.textContent=act==="later"?t("tSaved"):t("tAdded");});
   document.getElementById("change").onclick=()=>{step=0;render();};
   document.getElementById("again").onclick=()=>{Object.keys(answers).forEach(k=>delete answers[k]);step=-1;render();};
