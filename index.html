@@ -9,9 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#13205E;--ink:#1A2140;--muted:#5A6386;--blue:#3B5BFD;--blue-soft:#E8ECFF;--amber:#F5A524;
-  --paper:#F4F6FC;--card:#FFFFFF;--line:#DCE2F2;--ok:#1E8E5A;--warn-bg:#FFF4DE;--notice:#FFFBEA;
-  --bubble:#E7FBDF;--on-navy:#FFFFFF;--on-navy-muted:#B9C3F0;
+  --navy:#13205E;--ink:#1A2140;--muted:#5A6386;--blue:#3B5BFD;--blue-soft:#E1E5F0;--amber:#F5A524;
+  --paper:#F2F3F7;--card:#FBFAF7;--line:#DCE2F2;--ok:#1E8E5A;--warn-bg:#F1E6CF;--notice:#F6F1E1;
+  --bubble:#DFE9DC;--on-navy:#FFFFFF;--on-navy-muted:#B9C3F0;
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -35,14 +35,13 @@ button{font:inherit;color:inherit}
 .logo-name{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:22px;letter-spacing:-.01em}
 .logo-sub{font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.42em;color:#A9B3D9;margin-top:5px}
 /* language switch */
-.lang{display:inline-flex;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:3px;flex:none}
-.lang button{min-height:40px;min-width:64px;padding:0 14px;border:0;border-radius:999px;background:transparent;color:var(--on-navy);font-weight:700;font-size:15px;cursor:pointer}
-.lang button[aria-pressed="true"]{background:#fff;color:#13205E}
-.lang button:hover:not([aria-pressed="true"]){background:rgba(255,255,255,.12)}
+.lang{display:inline-flex;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:6px;padding:3px;flex:none}
+.lang button{min-height:40px;min-width:64px;padding:0 14px;border:0;border-radius:4px;background:transparent;color:var(--on-navy);font-weight:700;font-size:15px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:#F2F3F7;color:#13205E}
 .lang .hi{font-family:"Noto Sans Devanagari",sans-serif}
 
 .bar{display:flex;gap:5px;margin-top:18px}
-.bar span{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.18)}
+.bar span{flex:1;height:6px;border-radius:2px;background:rgba(255,255,255,.18)}
 .bar span.done{background:var(--amber)}
 .stepline{font-size:14px;color:var(--on-navy-muted);margin-top:8px;min-height:1.4em}
 main{max-width:640px;margin:0 auto;padding:24px 20px 40px}
@@ -53,68 +52,69 @@ h2{font-size:clamp(22px,5vw,27px);line-height:1.25;margin:0 0 8px;letter-spacing
 .opts.two{grid-template-columns:1fr}
 @media (min-width:520px){.opts.two{grid-template-columns:1fr 1fr}}
 .opt{display:flex;align-items:center;gap:12px;text-align:left;width:100%;min-height:56px;padding:12px 16px;background:var(--card);
-  border:2px solid var(--line);border-radius:14px;cursor:pointer}
+  border:2px solid var(--line);border-radius:6px;cursor:pointer}
 .opt:hover{border-color:var(--blue)}
 .opt .tick{flex:none;width:22px;height:22px;border:2px solid var(--line);display:grid;place-items:center}
 .opt[data-kind="single"] .tick{border-radius:50%}
-.opt[data-kind="multi"] .tick{border-radius:6px}
+.opt[data-kind="multi"] .tick{border-radius:2px}
 .opt[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
 .opt[aria-pressed="true"] .tick{background:var(--blue);border-color:var(--blue)}
-.opt[aria-pressed="true"] .tick::after{content:"";width:8px;height:8px;background:#fff;border-radius:2px}
+.opt[aria-pressed="true"] .tick::after{content:"";width:8px;height:8px;background:var(--card);border-radius:2px}
 .opt[data-kind="single"][aria-pressed="true"] .tick::after{border-radius:50%}
 .nav{display:flex;gap:12px;margin-top:28px}
-.btn{min-height:52px;padding:0 24px;border-radius:14px;border:2px solid var(--line);background:var(--card);font-weight:700;cursor:pointer}
+.btn{min-height:52px;padding:0 24px;border-radius:6px;border:2px solid var(--line);background:var(--card);font-weight:700;cursor:pointer}
 .btn.primary{flex:1;background:var(--blue);border-color:var(--blue);color:#fff}
 .btn.primary:disabled{opacity:.45;cursor:not-allowed}
 .hint{font-size:14px;color:var(--muted);margin-top:10px;min-height:1.4em}
 .promises{display:grid;gap:10px;margin:22px 0 26px;padding:0;list-style:none}
-.promises li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.promises li{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 16px}
 .promises b{display:block}
 .examples{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 18px}
-.examples span{font-size:14px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.examples span{font-size:14px;font-weight:600;padding:5px 12px;border-radius:6px;background:var(--card);border:1px solid var(--line)}
 /* situations */
 .scene{margin:0 0 20px}
-.phone{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;max-width:420px}
+.phone{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px;max-width:420px}
 .phone .who{font-size:13px;color:var(--muted);margin:0 0 8px 4px}
-.bubble{background:var(--bubble);border-radius:4px 16px 16px 16px;padding:12px 14px;font-size:16px}
+.bubble{background:var(--bubble);border-radius:2px 6px 6px 6px;padding:12px 14px;font-size:16px}
 .bubble small{display:block;text-align:right;color:var(--muted);font-size:12px;margin-top:4px}
-.ai-q{background:var(--blue);color:#fff;border-radius:16px 4px 16px 16px;padding:10px 14px;margin:0 0 10px auto;width:fit-content;max-width:85%}
-.ai-a{background:var(--blue-soft);border-radius:4px 16px 16px 16px;padding:10px 14px;max-width:85%}
+.ai-q{background:var(--blue);color:#fff;border-radius:6px 2px 6px 6px;padding:10px 14px;margin:0 0 10px auto;width:fit-content;max-width:85%}
+.ai-a{background:var(--blue-soft);border-radius:2px 6px 6px 6px;padding:10px 14px;max-width:85%}
 .notice{background:var(--notice);border:1px solid #E9D98A;border-radius:4px;padding:20px 22px;max-width:420px;
-  box-shadow:0 2px 0 #E9D98A;transform:rotate(-.6deg);font-family:Georgia,"Times New Roman",serif}
+  font-family:Georgia,"Times New Roman",serif}
 .notice strong{display:block;text-align:center;letter-spacing:.08em;margin-bottom:8px}
 .note{font-size:14px;color:var(--muted);margin-top:10px}
 /* results */
 .plan-head{margin-bottom:20px}
-.start{background:var(--navy);color:var(--on-navy);border-radius:20px;padding:22px}
+.start{background:var(--navy);color:var(--on-navy);border-radius:6px;padding:22px}
 .start .lbl{color:var(--amber);font-weight:700;font-size:15px}
 .start h3{font-size:24px;line-height:1.25;margin:6px 0 10px}
-.start .why{background:rgba(255,255,255,.08);border-radius:12px;padding:14px;margin-top:14px}
+.start .why{background:rgba(255,255,255,.08);border-radius:6px;padding:14px;margin-top:14px}
 .meta{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:600}
-.meta span{padding:4px 10px;border-radius:999px;background:var(--blue-soft);color:var(--ink)}
+.meta span{padding:4px 10px;border-radius:6px;background:var(--blue-soft);color:var(--ink)}
 .start .meta span{background:rgba(255,255,255,.14);color:#fff}
 .meta .after{background:var(--warn-bg)}
 .sec{font-size:18px;margin:28px 0 12px}
-.course{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:12px}
+.course{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px;margin-bottom:12px}
 .course h3{font-size:19px;margin:8px 0 6px;line-height:1.3}
 .course p{margin:8px 0 0;color:var(--muted)}
-.course .cta,.start .cta{margin-top:14px;min-height:46px;padding:0 18px;border-radius:12px;border:0;background:var(--amber);color:#1A2140;font-weight:700;cursor:pointer}
+.course .cta,.start .cta{margin-top:14px;min-height:46px;padding:0 18px;border-radius:6px;border:0;background:var(--amber);color:#1A2140;font-weight:700;cursor:pointer}
 .course .cta{background:var(--blue-soft);color:var(--ink)}
-.understood{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px 18px}
+.understood{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:6px 18px}
 .understood div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
 .understood div:last-child{border-bottom:0}
 .understood span:first-child{color:var(--muted)}
 .understood span:last-child{text-align:right;font-weight:600}
-details.staff{margin-top:24px;font-size:14px;background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:12px 16px}
+details.staff{margin-top:24px;font-size:14px;background:var(--card);border:1px dashed var(--line);border-radius:6px;padding:12px 16px}
 details.staff summary{cursor:pointer;font-weight:600}
 details.staff code{font-size:13px}
 .level{display:flex;gap:4px;align-items:center;margin-top:6px}
-.level i{width:22px;height:7px;border-radius:4px;background:var(--line)}
+.level i{width:22px;height:7px;border-radius:2px;background:var(--line)}
 .level i.on{background:var(--blue)}
+.foot{max-width:640px;margin:0 auto;padding:0 20px 32px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px}
+.foot a{color:var(--muted);text-underline-offset:3px}
 .toast{font-size:14px;color:var(--ok);margin-top:8px;min-height:1.2em}
 .start .toast{color:#9BE3BF}
 @media (max-width:380px){.logo-name{font-size:19px}.lang button{min-width:56px;padding:0 10px}}
-@media (prefers-reduced-motion:no-preference){.screen{animation:in .25s ease-out}@keyframes in{from{opacity:0;transform:translateY(6px)}}}
 </style>
 </head>
 <body data-lang="en">
@@ -132,6 +132,7 @@ details.staff code{font-size:13px}
   <div class="stepline" id="stepline" aria-live="polite"></div>
 </div></header>
 <main id="app"></main>
+<footer class="foot"><a href="terms.html" id="fTerms">Terms of Service</a><a href="privacy.html" id="fPriv">Privacy Policy</a></footer>
 <script>
 /* ---------- language ---------- */
 let LANG="en";
@@ -146,7 +147,7 @@ const UI={
   wHelp:{en:"Answer 10 short questions. We will show you one course to start today, and what to learn next.",
          hi:"10 छोटे सवालों के जवाब दें। हम आपको आज शुरू करने के लिए एक कोर्स दिखाएँगे, और आगे क्या सीखना है।"},
   p1b:{en:"This is not an exam",hi:"यह परीक्षा नहीं है"},p1:{en:"There are no marks. Every answer is fine.",hi:"कोई नंबर नहीं हैं। हर जवाब ठीक है।"},
-  p2b:{en:"Tell us what you have done",hi:"बताइए आपने क्या-क्या किया है"},p2:{en:"We ask about real things, not how good you think you are.",hi:"हम असली कामों के बारे में पूछते हैं, यह नहीं कि आप खुद को कितना अच्छा मानते हैं।"},
+  p2b:{en:"Tell us what you have done",hi:"बताइए आपने क्या-क्या किया है"},p2:{en:"We ask what you have actually done on a phone, a computer and at work.",hi:"हम पूछते हैं कि आपने फ़ोन, कंप्यूटर और काम पर असल में क्या-क्या किया है।"},
   p3b:{en:"You can go back",hi:"आप पीछे जा सकते हैं"},p3:{en:"Change any answer before you see your plan.",hi:"अपना प्लान देखने से पहले कोई भी जवाब बदल सकते हैं।"},
   startQ:{en:"Start the questions",hi:"सवाल शुरू करें"},
   qOf:{en:"Question {n} of {m}",hi:"सवाल {n} / {m}"},
@@ -176,7 +177,8 @@ const UI={
   aiMonth:{en:"Uses AI every month",hi:"हर महीने AI इस्तेमाल करते हैं"},aiWeek:{en:"Uses AI every week",hi:"हर हफ़्ते AI इस्तेमाल करते हैं"},
   enBoth:{en:"Can speak and read some English",hi:"थोड़ी अंग्रेज़ी बोल और पढ़ सकते हैं"},enRead:{en:"Can read simple English",hi:"आसान अंग्रेज़ी पढ़ सकते हैं"},
   enSpeak:{en:"Can speak some English",hi:"थोड़ी अंग्रेज़ी बोल सकते हैं"},enStart:{en:"Building English basics",hi:"अंग्रेज़ी की शुरुआत कर रहे हैं"},
-  listSep:{en:", ",hi:", "}
+  listSep:{en:", ",hi:", "},
+  terms:{en:"Terms of Service",hi:"सेवा की शर्तें"},privacy:{en:"Privacy Policy",hi:"गोपनीयता नीति"}
 };
 const t=(k,v)=>fill(tr(UI[k]),v||{});
 
@@ -395,6 +397,7 @@ function esc(x){return String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;","
 function setLang(l){
   LANG=l; document.documentElement.lang=l; document.body.dataset.lang=l;
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===l)));
+  document.getElementById("fTerms").textContent=t("terms");document.getElementById("fPriv").textContent=t("privacy");
   try{localStorage.setItem("saa-lang",l);}catch(e){}
 }
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{
